@@ -73,9 +73,19 @@ Now write the tools for exact pattern matching. You can use the naive algorithm 
 
 You might not have to sort the output, if you run through reads
 
+
 ## Evaluation
 
-Implement the two algorithms in two tools, `naive` and `lin`, that must be present at the root of the repository once they are built. The test setup checks that they give the correct output on selected data, but you should still carefully test them.
+Implement the two algorithms in two tools, `naive` and `lin`, that must be present at the root of the repository once they are built.
+
+The repository is set up to build the tools from the source code in `progs` if you run
+
+```sh
+> GOBIN=$PWD go install ./...
+```
+
+
+The test setup checks that they give the correct output on selected data, but you should still carefully test them.
 
 Once you have implemented the tools, fill out the report below. 
 
