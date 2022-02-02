@@ -4,18 +4,28 @@ import (
 	"fmt"
 	"os"
 
-	// Directories in the root of the repo can be imported
-	// as long as we pretend that they sit relative to the
-	// url birc.au.dk/gsa, like this for the example 'shared':
-	"birc.au.dk/gsa/shared"
+	"birc.au.dk/gsa/search"
 )
+
+func naive(x, p string, callback func(int)) {
+	var i, j int
+	for i = 0; i < len(x)-len(p)+1; i++ {
+		for j = 0; j < len(p); j++ {
+			if x[i+j] != p[j] {
+				break
+			}
+		}
+
+		if j == len(p) {
+			callback(i)
+		}
+	}
+}
 
 func main() {
 	if len(os.Args) != 3 {
 		fmt.Fprintf(os.Stderr, "Usage: genome-file reads-file\n")
 		os.Exit(1)
 	}
-	genome := os.Args[1]
-	reads := os.Args[2]
-	fmt.Println(shared.Todo(genome, reads))
+	search.SearchGenome(os.Args[1], os.Args[2], naive)
 }
